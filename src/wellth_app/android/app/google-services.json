@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "600688007911",
+    "project_id": "wellth-app",
+    "storage_bucket": "wellth-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:600688007911:android:e7c8351e016ca491ad6042",
+        "android_client_info": {
+          "package_name": "com.example.wellth_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3oW9h0BiNr062_Il1caBohG5HsWATyKQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
