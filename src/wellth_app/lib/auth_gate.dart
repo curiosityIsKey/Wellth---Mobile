@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart'; // Allows Google sign-in
 import 'package:flutter/material.dart';
 
 import 'home.dart';
@@ -17,7 +18,9 @@ class AuthGate extends StatelessWidget {
         if (!snapshot.hasData) {
           // Creates sign in screen
           return SignInScreen( 
-            providers: [EmailAuthProvider()],
+            providers: [EmailAuthProvider(),
+            GoogleProvider(clientId: "600688007911-843vqn9lh009cts01ik2503gvlepmupf.apps.googleusercontent.com"),
+            ],
             // Create styling and logo display for narrow screens (iOS & Android)
             headerBuilder: (context, constraints, shrinkOffset) { 
               return Padding(
@@ -54,7 +57,7 @@ class AuthGate extends StatelessWidget {
                 padding: const EdgeInsets.all(20),
                 child: AspectRatio(
                   aspectRatio: 1,
-                  child: Image.asset('flutterfire_300x.png'),
+                  child: Image.asset('assets/flutterfire_300x.png'),
                 ),
               );
             }, 

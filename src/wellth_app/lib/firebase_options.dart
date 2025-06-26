@@ -63,6 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '600688007911',
     projectId: 'wellth-app',
     storageBucket: 'wellth-app.firebasestorage.app',
+    iosClientId: '600688007911-m0c0a2tmvf3bk21itqh4vkcod40566jv.apps.googleusercontent.com',
     iosBundleId: 'com.example.wellthApp',
   );
 
@@ -72,6 +73,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '600688007911',
     projectId: 'wellth-app',
     storageBucket: 'wellth-app.firebasestorage.app',
+    iosClientId: '600688007911-m0c0a2tmvf3bk21itqh4vkcod40566jv.apps.googleusercontent.com',
     iosBundleId: 'com.example.wellthApp',
   );
 
@@ -83,4 +85,5 @@ class DefaultFirebaseOptions {
     authDomain: 'wellth-app.firebaseapp.com',
     storageBucket: 'wellth-app.firebasestorage.app',
   );
+
 }

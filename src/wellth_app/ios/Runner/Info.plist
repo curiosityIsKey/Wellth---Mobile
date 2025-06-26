@@ -45,5 +45,19 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<!-- Google Sign-in Section -->
+	<key>CFBundleURLTypes</key>
+	<array>
+	<dict>
+		<key>CFBundleTypeRole</key>
+		<string>Editor</string>
+		<key>CFBundleURLSchemes</key>
+		<array>
+		<!-- From firebase_options.dart iOSClientID -->
+		<string>600688007911-m0c0a2tmvf3bk21itqh4vkcod40566jv.apps.googleusercontent.com</string>
+		</array>
+	</dict>
+	</array>
+	<!-- End of the Google Sign-in Section -->
 </dict>
 </plist>
