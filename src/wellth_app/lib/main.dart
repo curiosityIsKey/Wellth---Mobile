@@ -5,7 +5,9 @@ import 'package:firebase_core/firebase_core.dart';                  // Added fro
 import 'package:flutter/material.dart';
 
 import 'app.dart';
-import 'firebase_options.dart';                                     // Added from codelab
+import 'firebase_options.dart'; 
+import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';                                    // Added from codelab
 
 // TODO(codelab user): Get API key
 const clientId = '600688007911-m0c0a2tmvf3bk21itqh4vkcod40566jv.apps.googleusercontent.com';
