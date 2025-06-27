@@ -5,7 +5,7 @@ import 'home.dart';
 
 /// Wraps your app and decides whether to show the login page or HomeScreen.
 class AuthGate extends StatelessWidget {
-  const AuthGate({Key? key, required this.clientId}) : super(key: key);
+  const AuthGate({super.key, required this.clientId});
 
   /// Your Google OAuth client ID from the Firebase console
   final String clientId;
