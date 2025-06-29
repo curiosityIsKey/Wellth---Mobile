@@ -3,12 +3,16 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:wellth_app/components/gradient-button.dart';
 
 class CustomLoginPage extends StatefulWidget {
-  /// Pass your Google OAuth clientId here.
-  const CustomLoginPage({Key? key, required this.clientId}) : super(key: key);
+  //Geens Modifications
+  final Function()? onTap;
 
-  final String clientId;
+  /// Pass your Google OAuth clientId here.
+  /// Added required on tap - geena
+  const CustomLoginPage({super.key, required this.onTap});
+  //final String clientId;
 
   @override
   State<CustomLoginPage> createState() => _CustomLoginPageState();
@@ -20,49 +24,59 @@ class _CustomLoginPageState extends State<CustomLoginPage> {
   bool _loading    = false;
   String? _error;
 
-  Future<void> _signIn() async {
-    setState(() {
-      _loading = true;
-      _error   = null;
-    });
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _emailCtrl.text.trim(),
-        password: _pwCtrl.text,
-      );
-      // AuthGate will react to the new user
-    } on FirebaseAuthException catch (e) {
-      setState(() {
-        _error = e.message;
-      });
-    } finally {
-      setState(() {
-        _loading = false;
-      });
-    }
-  }
-
-  Future<void> _signInWithGoogle() async {
-    final googleUser = await GoogleSignIn(
-      clientId: widget.clientId,
-      scopes: ['email'],
-    ).signIn();
-    if (googleUser == null) return; // aborted
-
-    final auth = await googleUser.authentication;
-    final credential = GoogleAuthProvider.credential(
-      idToken: auth.idToken,
-      accessToken: auth.accessToken,
+  //sign in users
+  void signIn() async {
+    // show laoding circle
+    showDialog(
+      context: context,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),),
     );
-    await FirebaseAuth.instance.signInWithCredential(credential);
-  }
 
-  @override
-  void dispose() {
-    _emailCtrl.dispose();
-    _pwCtrl.dispose();
-    super.dispose();
+  setState(() {
+    _loading = true;
+    _error = null;
+  });
+  if(_pwCtrl.text.trim().isEmpty){
+      //pop loading cirlce
+      if (context.mounted) Navigator.pop(context);
+      //show error to user
+      displayMessage("Please enter a password");
+      return;
+    }
+
+  try {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: _emailCtrl.text.trim(),
+      password: _pwCtrl.text.trim(),
+    );
+    // pop loading circle
+    if (context.mounted) Navigator.pop(context);
+  } on FirebaseAuthException catch (e) {
+    // pop loading circle
+    if (context.mounted) Navigator.pop(context);
+    displayMessage(e.code);
+    if (!mounted) return;
+    setState(() {
+      _error = e.message;
+    });
+  } finally {
+    if (!mounted) return;
+    setState(() {
+      _loading = false;
+    });
   }
+}
+
+// display dialog message
+void displayMessage (String message){
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text(message),
+    ),
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -229,7 +243,12 @@ class _CustomLoginPageState extends State<CustomLoginPage> {
                   ],
 
                   // --- Gradient “Log in” button ---
-                  DecoratedBox(
+                  MyGradientbutton(
+                    onTap: signIn, 
+                    text: 'Log in'
+                    ),
+                    SizedBox(height: 16),
+                  /*DecoratedBox(
                     decoration: BoxDecoration(
                       gradient: gradient,
                       borderRadius: BorderRadius.circular(30),
@@ -244,18 +263,18 @@ class _CustomLoginPageState extends State<CustomLoginPage> {
                           borderRadius: BorderRadius.circular(30),
                         ),
                       ),
-                      onPressed: _loading ? null : _signIn,
+                      onPressed: null,
                       child: _loading
                           ? const SizedBox(
                               height: 16,
                               width: 16,
                               child: CircularProgressIndicator(strokeWidth: 2),
                             )
-                          : const Text('Log in'),
+                          : const Text('Log in', style: const TextStyle(color: Colors.black)),
                     ),
                   ),
 
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 16),*/
 
                   // --- Google Sign‐in button ---
                   ElevatedButton.icon(
@@ -264,16 +283,16 @@ class _CustomLoginPageState extends State<CustomLoginPage> {
                       height: 24,
                       width: 24,
                     ),*/
-                    label: const Text('Continue with Google'),
+                    label: const Text('Continue with Google',style: const TextStyle(color: Colors.black)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                       foregroundColor: Colors.black87,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
                     ),
-                    onPressed: _loading ? null : _signInWithGoogle,
+                    onPressed: null,
                   ),
 
                   const SizedBox(height: 24),
@@ -285,12 +304,26 @@ class _CustomLoginPageState extends State<CustomLoginPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text('New member?'),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pushNamed('/register');
-                        },
-                        child: const Text('Create an account'),
+
+                      //----------Geens Modifications----------//
+                      GestureDetector(
+                        onTap: widget.onTap,
+                        child: const Text(' Create an account',style: const TextStyle(color: Colors.blue)),
                       ),
+                      /*TextButton(
+                        onPressed: () async {
+                          try {
+
+                            // Navigate to profile setup
+                            Navigator.pushReplacementNamed(context, '/register');
+                          } catch (e) {
+                            print("Registration error: $e");
+                            // Handle error (e.g., show snackbar)
+                          }
+                        },*///temp comment out till here
+
+                        //child: const Text('Create an account'),
+                      //),
                     ],
                   ),
                 ],
