@@ -4,6 +4,8 @@ import 'auth_gate.dart';
 import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wellth_app/pages/register_page.dart'; // Import your register page
+import 'package:wellth_app/pages/custom_login_page.dart';
 
 
 
@@ -38,6 +40,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: {
+        '/register': (context) => RegisterPage(onTap: (){},), // Register page route
+        '/login': (context) => CustomLoginPage(onTap: (){},), // Custom login page route
+      },
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white, surface: Colors.white),
         textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme),
