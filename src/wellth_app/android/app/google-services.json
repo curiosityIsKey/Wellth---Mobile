@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "600688007911",
+    "project_id": "wellth-app",
+    "storage_bucket": "wellth-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:600688007911:android:e7c8351e016ca491ad6042",
+        "android_client_info": {
+          "package_name": "com.example.wellth_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "600688007911-843vqn9lh009cts01ik2503gvlepmupf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3oW9h0BiNr062_Il1caBohG5HsWATyKQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "600688007911-843vqn9lh009cts01ik2503gvlepmupf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "600688007911-m0c0a2tmvf3bk21itqh4vkcod40566jv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.wellthApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
